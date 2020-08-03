@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "958078759564",
+    "firebase_url": "https://vozenredmk.firebaseio.com",
+    "project_id": "vozenredmk",
+    "storage_bucket": "vozenredmk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958078759564:android:a7cd4b9306f0ede16a81a9",
+        "android_client_info": {
+          "package_name": "com.individual.vozenredmk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958078759564-eutsn45g95ccf9487fv1n5u72mnoll0l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.individual.vozenredmk",
+            "certificate_hash": "862b0a82358f67bfffec59873373e17026382aa9"
+          }
+        },
+        {
+          "client_id": "958078759564-osmgh2at54hoa5mqfb97uhclfq363g6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0JmWJg-KONC-CwfPPmgDIMowuCs_ID5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958078759564-osmgh2at54hoa5mqfb97uhclfq363g6m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
