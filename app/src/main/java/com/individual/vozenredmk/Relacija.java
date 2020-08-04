@@ -8,6 +8,7 @@ public class Relacija {
     private String vreme;
     private String kompanija;
     private String cena;
+    private Boolean expanded;
 
     public Relacija(String start, String end, String stanica, String vreme, String kompanija, String cena) {
         this.start = start;
@@ -16,6 +17,7 @@ public class Relacija {
         this.vreme = vreme;
         this.kompanija = kompanija;
         this.cena = cena;
+       this.expanded = false;
     }
 
     public String getStart() {
@@ -65,6 +67,14 @@ public class Relacija {
     public void setCena(String cena) {
         this.cena = cena;
     }
+
+   public Boolean isExpanded() {
+       return expanded;
+    }
+
+    public void setExpanded(Boolean expanded) {
+       this.expanded = expanded;
+   }
 
     public Relacija() {}
 

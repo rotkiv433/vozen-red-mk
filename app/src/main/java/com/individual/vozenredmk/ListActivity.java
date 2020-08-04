@@ -1,25 +1,17 @@
 package com.individual.vozenredmk;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
-
-
-public class MenuActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity {
     private RecyclerView recyclerViewList;
     DatabaseReference mReference;
     @Override
@@ -32,11 +24,10 @@ public class MenuActivity extends AppCompatActivity {
         recyclerViewList = (RecyclerView)findViewById(R.id.myRecycleView);
         recyclerViewList.setHasFixedSize(true);
         recyclerViewList.setLayoutManager(new LinearLayoutManager(this));
+        initData();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    private void initData() {
         FirebaseRecyclerAdapter<Relacija, RelacijaViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Relacija, RelacijaViewHolder>
                 (Relacija.class, R.layout.relacii_cardview,RelacijaViewHolder.class,mReference) {
             @Override
@@ -51,36 +42,50 @@ public class MenuActivity extends AppCompatActivity {
         recyclerViewList.setAdapter(firebaseRecyclerAdapter);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
     public static class RelacijaViewHolder extends RecyclerView.ViewHolder {
         View mView;
+        ConstraintLayout expandableLayout;
+        TextView post_relacija, post_stanica, post_vremeikompanija, post_cena;
 
         public RelacijaViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
+            expandableLayout = itemView.findViewById(R.id.expandableLayout);
+            expandableLayout.setVisibility(View.GONE);
         }
 
-
-
         public void setRelacija(String start) {
-            TextView post_relacija = (TextView)mView.findViewById(R.id.post_relacija);
+            post_relacija = (TextView)mView.findViewById(R.id.post_relacija);
             post_relacija.setText(start);
         }
 
         public void setStanica(String stanica) {
-            TextView post_stanica = (TextView)mView.findViewById(R.id.post_stanica);
+            post_stanica = (TextView)mView.findViewById(R.id.post_stanica);
             post_stanica.setText(stanica);
         }
 
         public void setVremeIKompanija(String vremeIKompanija) {
-            TextView post_vremeikompanija = (TextView)mView.findViewById(R.id.post_vremeikompanija);
+            post_vremeikompanija = (TextView)mView.findViewById(R.id.post_vremeikompanija);
             post_vremeikompanija.setText(vremeIKompanija);
+            post_vremeikompanija.setOnClickListener(new View.OnClickListener() {
+                @Override
+               public void onClick(View v) {
+                    if(expandableLayout.getVisibility() == View.GONE)
+                        expandableLayout.setVisibility(View.VISIBLE);
+                    else
+                        expandableLayout.setVisibility(View.GONE);
+               }
+             });
         }
-
         public void setCena(String cena) {
-            TextView post_cena = (TextView)mView.findViewById(R.id.post_cena);
+            post_cena = (TextView)mView.findViewById(R.id.post_cena);
             post_cena.setText(cena);
         }
-
-
     }
 }
