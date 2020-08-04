@@ -43,7 +43,8 @@ public class MenuActivity extends AppCompatActivity {
             protected void populateViewHolder(RelacijaViewHolder relacijaViewHolder, Relacija relacija, int i) {
                 relacijaViewHolder.setRelacija(relacija.getStart() + " - " + relacija.getEnd());
                 relacijaViewHolder.setStanica(relacija.getStanica());
-                relacijaViewHolder.setVreme(relacija.getVreme());
+                relacijaViewHolder.setVremeIKompanija(relacija.getVreme() + " - " + relacija.getKompanija());
+                relacijaViewHolder.setCena(relacija.getCena());
             }
         };
 
@@ -52,10 +53,13 @@ public class MenuActivity extends AppCompatActivity {
 
     public static class RelacijaViewHolder extends RecyclerView.ViewHolder {
         View mView;
+
         public RelacijaViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
         }
+
+
 
         public void setRelacija(String start) {
             TextView post_relacija = (TextView)mView.findViewById(R.id.post_relacija);
@@ -67,10 +71,16 @@ public class MenuActivity extends AppCompatActivity {
             post_stanica.setText(stanica);
         }
 
-        public void setVreme(String vreme) {
-            TextView post_vreme = (TextView)mView.findViewById(R.id.post_vreme);
-            post_vreme.setText(vreme);
+        public void setVremeIKompanija(String vremeIKompanija) {
+            TextView post_vremeikompanija = (TextView)mView.findViewById(R.id.post_vremeikompanija);
+            post_vremeikompanija.setText(vremeIKompanija);
         }
+
+        public void setCena(String cena) {
+            TextView post_cena = (TextView)mView.findViewById(R.id.post_cena);
+            post_cena.setText(cena);
+        }
+
 
     }
 }

@@ -6,12 +6,16 @@ public class Relacija {
     private String end;
     private String stanica;
     private String vreme;
+    private String kompanija;
+    private String cena;
 
-    public Relacija(String start, String end, String stanica, String vreme) {
+    public Relacija(String start, String end, String stanica, String vreme, String kompanija, String cena) {
         this.start = start;
         this.end = end;
         this.stanica = stanica;
         this.vreme = vreme;
+        this.kompanija = kompanija;
+        this.cena = cena;
     }
 
     public String getStart() {
@@ -46,6 +50,23 @@ public class Relacija {
         this.vreme = vreme;
     }
 
+    public String getKompanija() {
+        return kompanija;
+    }
+
+    public void setKompanija(String kompanija) {
+        this.kompanija = kompanija;
+    }
+
+    public String getCena() {
+        return cena;
+    }
+
+    public void setCena(String cena) {
+        this.cena = cena;
+    }
+
     public Relacija() {}
+
 
 }
