@@ -78,5 +78,16 @@ public class Relacija {
 
     public Relacija() {}
 
-
+    @Override
+    public String toString() {
+        return "Relacija{" +
+                "start='" + start + '\'' +
+                ", end='" + end + '\'' +
+                ", stanica='" + stanica + '\'' +
+                ", vreme='" + vreme + '\'' +
+                ", kompanija='" + kompanija + '\'' +
+                ", cena='" + cena + '\'' +
+                ", expanded=" + expanded +
+                '}';
+    }
 }
