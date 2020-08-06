@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    app:cardCornerRadius="6dp"
+    android:layout_margin="7dp"
     android:elevation="90dp"
-    android:layout_margin="7dp">
+    android:orientation="vertical"
+    app:cardCornerRadius="6dp">
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#26282B">
+        android:background="#26282B"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/post_vremeikompanija"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="POST VREME I KOMPANIJA"
+            android:text="@string/nullCardText"
             android:textAlignment="center"
             android:textColor="#fff"
             android:textSize="20sp"
@@ -32,17 +34,17 @@
             android:id="@+id/expandableLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_vremeikompanija"
-            android:animateLayoutChanges="true">
+            app:layout_constraintTop_toBottomOf="@+id/post_vremeikompanija">
 
             <TextView
                 android:id="@+id/post_relacija"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="POST RELACIJA"
+                android:text="@string/nullCardText"
                 android:textColor="#fff"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="POST STANICA"
+                android:text="@string/nullCardText"
                 android:textColor="#fff"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="POST cena"
+                android:text="@string/nullCardText"
                 android:textColor="#fff"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"

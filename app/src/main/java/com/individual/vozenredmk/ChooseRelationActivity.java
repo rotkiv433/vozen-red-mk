@@ -42,6 +42,8 @@ public class ChooseRelationActivity extends AppCompatActivity {
         gradovi.add("Кавадарци");
         gradovi.add("Кочани");
 
+        gradovi.add("test");
+
         return gradovi;
     }
 

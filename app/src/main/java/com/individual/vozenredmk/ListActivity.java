@@ -1,60 +1,72 @@
 package com.individual.vozenredmk;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
-import android.view.View;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import android.widget.Toast;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 public class ListActivity extends AppCompatActivity {
-    private RecyclerView recyclerViewList;
+    RecyclerView recyclerViewList;
     DatabaseReference mReference;
+    ArrayList<Relation> relacii;
     String relationFrom, relationTo;
-    FirebaseRecyclerAdapter<Relacija, RelacijaViewHolder> firebaseRecyclerAdapter;
+    RelationAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mReference = FirebaseDatabase.getInstance().getReference().child("relacii");
+
+        //THESE TWO STRINGS ARE TRANSFERED FROM PREVIOUS ACTIVITY
         relationFrom = getIntent().getStringExtra("relationFrom");
         relationTo = getIntent().getStringExtra("relationTo");
 
         recyclerViewList = (RecyclerView)findViewById(R.id.myRecycleView);
+        recyclerViewList.setHasFixedSize(true);
         recyclerViewList.setLayoutManager(new LinearLayoutManager(this));
-        initData();
+        relacii = new ArrayList<>();
 
-    }
-
-    private void initData() {
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Relacija, RelacijaViewHolder>
-                (Relacija.class, R.layout.relacii_cardview,RelacijaViewHolder.class,mReference) {
+        mReference = FirebaseDatabase.getInstance().getReference().child("relacii");
+        mReference.addValueEventListener(new ValueEventListener() {
             @Override
-            protected void populateViewHolder(RelacijaViewHolder relacijaViewHolder, Relacija relacija, int i) {
-                relacija.getStart();
-                relacija.getEnd();
-                if(relacija.getStart().equals(relationFrom) && relacija.getEnd().equals(relationTo)) {
-                    relacijaViewHolder.setRelacija(relacija.getStart() + " - " + relacija.getEnd());
-                    relacijaViewHolder.setStanica(relacija.getStanica());
-                    relacijaViewHolder.setVremeIKompanija(relacija.getVreme() + " - " + relacija.getKompanija());
-                    relacijaViewHolder.setCena(relacija.getCena());
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Relation r = ds.getValue(Relation.class);
+                    assert r != null;
+                    if(relationFrom.equals(r.getStart()) && relationTo.equals(r.getEnd())) {
+                        relacii.add(r);
+                    }
+                    else {
+                        relacii.remove(r);
+                    }
                 }
-                else {
-                    relacijaViewHolder.itemView.setVisibility(View.GONE);
-                    relacijaViewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+                if(relacii.size() == 0) {
+                    Toast.makeText(ListActivity.this, "Нема автобуски линии за оваа релација!", Toast.LENGTH_SHORT).show();
                 }
+                adapter = new RelationAdapter(ListActivity.this, relacii);
+                recyclerViewList.setAdapter(adapter);
             }
-        };
 
-        recyclerViewList.setAdapter(firebaseRecyclerAdapter);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ListActivity.this, "Настана грешка!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        firebaseRecyclerAdapter.cleanup();
+        adapter.clear();
 
     }
 

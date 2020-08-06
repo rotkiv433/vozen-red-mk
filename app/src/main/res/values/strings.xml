@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Vozen Red MK</string>
+    <string name="app_name">Возен Ред МК</string>
+    <string name="nullCardText">null</string>
 </resources>

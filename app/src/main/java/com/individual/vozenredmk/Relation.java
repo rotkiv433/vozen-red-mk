@@ -1,6 +1,6 @@
 package com.individual.vozenredmk;
 
-public class Relacija {
+public class Relation {
 
     private String start;
     private String end;
@@ -10,7 +10,7 @@ public class Relacija {
     private String cena;
     private Boolean expanded;
 
-    public Relacija(String start, String end, String stanica, String vreme, String kompanija, String cena) {
+    public Relation(String start, String end, String stanica, String vreme, String kompanija, String cena) {
         this.start = start;
         this.end = end;
         this.stanica = stanica;
@@ -18,6 +18,14 @@ public class Relacija {
         this.kompanija = kompanija;
         this.cena = cena;
        this.expanded = false;
+    }
+
+    public String getRelacija() {
+        return start + " - " + end;
+    }
+
+    public String getVremeIKompanija() {
+        return vreme + " - " + kompanija;
     }
 
     public String getStart() {
@@ -76,7 +84,7 @@ public class Relacija {
        this.expanded = expanded;
    }
 
-    public Relacija() {}
+    public Relation() {}
 
     @Override
     public String toString() {
