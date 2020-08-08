@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import jrizani.jrspinner.JRSpinner;
+
 public class ChooseRelationActivity extends AppCompatActivity {
     DatabaseReference mReference;
     List<String> gradovi;
@@ -25,6 +27,7 @@ public class ChooseRelationActivity extends AppCompatActivity {
     Spinner relationFrom, relationTo;
     Button btnBaraj;
     String selectedRelationFrom, selectedRelationTo;
+    JRSpinner spinner2;
 
     private List<String> loadList() {
         List<String> gradovi = new ArrayList<>();
@@ -63,7 +66,7 @@ public class ChooseRelationActivity extends AppCompatActivity {
         //SPINNERS
         relationFrom = (Spinner)findViewById(R.id.relationFrom);
         relationTo = (Spinner)findViewById(R.id.relationTo);
-
+        
         relationFrom.setAdapter(adapter);
         relationFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

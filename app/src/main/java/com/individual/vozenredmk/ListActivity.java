@@ -1,10 +1,14 @@
 package com.individual.vozenredmk;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
+import android.widget.CompoundButton;
 import android.widget.Toast;
+import android.widget.ToggleButton;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +39,7 @@ public class ListActivity extends AppCompatActivity {
         relacii = new ArrayList<>();
 
         mReference = FirebaseDatabase.getInstance().getReference().child("relacii");
+
         mReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -51,8 +56,10 @@ public class ListActivity extends AppCompatActivity {
                 if(relacii.size() == 0) {
                     Toast.makeText(ListActivity.this, "Нема автобуски линии за оваа релација!", Toast.LENGTH_SHORT).show();
                 }
+
                 adapter = new RelationAdapter(ListActivity.this, relacii);
                 recyclerViewList.setAdapter(adapter);
+
             }
 
             @Override
@@ -61,11 +68,14 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
         adapter.clear();
 
     }

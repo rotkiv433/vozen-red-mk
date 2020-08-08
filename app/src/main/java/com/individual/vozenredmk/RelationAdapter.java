@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -46,6 +49,22 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationAdapter.Relaci
                     holder.expandableLayout.setVisibility(View.GONE);
             }
         });
+        holder.toggleButton.setTextOff(null);
+        holder.toggleButton.setTextOn(null);
+        holder.toggleButton.setText(null);
+        holder.toggleButton.setChecked(false);
+        holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.star_off));
+        holder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                    holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.star_on));
+                else
+                    holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.star_off));
+            }
+        });
+
+
     }
 
 
@@ -63,6 +82,7 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationAdapter.Relaci
     static class RelacijaViewHolder extends RecyclerView.ViewHolder {
         TextView relacija, stanica, cena, vremeikompanija;
         ConstraintLayout expandableLayout;
+        ToggleButton toggleButton;
 
         public RelacijaViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,6 +92,7 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationAdapter.Relaci
             vremeikompanija = (TextView) itemView.findViewById(R.id.post_vremeikompanija);
             expandableLayout = (ConstraintLayout) itemView.findViewById(R.id.expandableLayout);
             expandableLayout.setVisibility(View.GONE);
+            toggleButton = (ToggleButton) itemView.findViewById(R.id.starFavorite);
         }
 
     }
