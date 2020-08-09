@@ -1,14 +1,14 @@
 package com.individual.vozenredmk;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
-import android.widget.CompoundButton;
+import android.view.MenuItem;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,10 +24,11 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<Relation> relacii;
     String relationFrom, relationTo;
     RelationAdapter adapter;
+    BottomNavigationView bottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list);
 
         //THESE TWO STRINGS ARE TRANSFERED FROM PREVIOUS ACTIVITY
         relationFrom = getIntent().getStringExtra("relationFrom");
@@ -37,6 +38,9 @@ public class ListActivity extends AppCompatActivity {
         recyclerViewList.setHasFixedSize(true);
         recyclerViewList.setLayoutManager(new LinearLayoutManager(this));
         relacii = new ArrayList<>();
+        bottomNav= findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
 
         mReference = FirebaseDatabase.getInstance().getReference().child("relacii");
 
@@ -79,5 +83,34 @@ public class ListActivity extends AppCompatActivity {
         adapter.clear();
 
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
+            adapter.clear();
+            switch (item.getItemId()) {
+
+                case R.id.nav_search:
+                    selectedFragment = new SearchRelationsFragment();
+                    break;
+                case R.id.nav_favorites:
+                    selectedFragment = new FavoritesFragment();
+                    break;
+                case R.id.nav_allRelations:
+                    selectedFragment = new AllRelationsFragment();
+                    break;
+            }
+
+            assert selectedFragment != null;
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    selectedFragment).commit();
+
+            return true;
+        }
+    };
 
 }

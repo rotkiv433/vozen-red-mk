@@ -49,18 +49,21 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationAdapter.Relaci
                     holder.expandableLayout.setVisibility(View.GONE);
             }
         });
+
+
+        //STAR BUTTON
         holder.toggleButton.setTextOff(null);
         holder.toggleButton.setTextOn(null);
         holder.toggleButton.setText(null);
         holder.toggleButton.setChecked(false);
-        holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.star_off));
+        holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.ic_baseline_favorite_border_24));
         holder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked)
-                    holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.star_on));
+                    holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.ic_baseline_favorite_24));
                 else
-                    holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.star_off));
+                    holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.ic_baseline_favorite_border_24));
             }
         });
 
@@ -92,7 +95,7 @@ public class RelationAdapter extends RecyclerView.Adapter<RelationAdapter.Relaci
             vremeikompanija = (TextView) itemView.findViewById(R.id.post_vremeikompanija);
             expandableLayout = (ConstraintLayout) itemView.findViewById(R.id.expandableLayout);
             expandableLayout.setVisibility(View.GONE);
-            toggleButton = (ToggleButton) itemView.findViewById(R.id.starFavorite);
+            toggleButton = (ToggleButton) itemView.findViewById(R.id.relationFavorite);
         }
 
     }

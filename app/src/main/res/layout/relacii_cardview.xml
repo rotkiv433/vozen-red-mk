@@ -17,8 +17,9 @@
         android:background="#26282B"
         android:orientation="vertical">
 
+
         <ToggleButton
-            android:id="@+id/starFavorite"
+            android:id="@+id/relationFavorite"
             android:layout_width="34dp"
             android:layout_height="33dp"
             android:layout_marginTop="6dp"
@@ -44,7 +45,7 @@
 
         <TextView
             android:id="@+id/post_vremeikompanija"
-            android:layout_width="wrap_content"
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/nullCardText"
@@ -110,3 +111,5 @@
 
 
 </androidx.cardview.widget.CardView>
+
+

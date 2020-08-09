@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Барај Релации"/>
+    <item
+        android:id="@+id/nav_favorites"
+        android:icon="@drawable/ic_baseline_favorite_border_24"
+        android:title="Мои Релации"/>
+    <item
+        android:id="@+id/nav_allRelations"
+        android:icon="@drawable/ic_baseline_directions_bus_24"
+        android:title="Сите Релации"/>
+
+</menu>
