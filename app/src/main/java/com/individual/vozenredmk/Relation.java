@@ -17,7 +17,7 @@ public class Relation {
         this.vreme = vreme;
         this.kompanija = kompanija;
         this.cena = cena;
-       this.expanded = false;
+        this.expanded = false;
     }
 
     public String getRelacija() {

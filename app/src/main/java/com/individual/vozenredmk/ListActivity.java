@@ -47,19 +47,24 @@ public class ListActivity extends AppCompatActivity {
         mReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Relation r = ds.getValue(Relation.class);
                     assert r != null;
                     if(relationFrom.equals(r.getStart()) && relationTo.equals(r.getEnd())) {
                         relacii.add(r);
+                        System.out.println(relacii.toString());
                     }
                     else {
                         relacii.remove(r);
                     }
                 }
+
                 if(relacii.size() == 0) {
                     Toast.makeText(ListActivity.this, "Нема автобуски линии за оваа релација!", Toast.LENGTH_SHORT).show();
                 }
+
+
 
                 adapter = new RelationAdapter(ListActivity.this, relacii);
                 recyclerViewList.setAdapter(adapter);

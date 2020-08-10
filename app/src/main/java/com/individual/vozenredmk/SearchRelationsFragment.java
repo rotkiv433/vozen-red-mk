@@ -98,6 +98,7 @@ public class SearchRelationsFragment extends Fragment {
     private Button.OnClickListener btnBarajListener = new Button.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             Intent goToListActivity = new Intent(getContext(), ListActivity.class);
             selectedRelationFrom = relationFrom.getSelectedItem().toString();
             selectedRelationTo = relationTo.getSelectedItem().toString();
