@@ -5,16 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="7dp"
     android:elevation="90dp"
     android:orientation="vertical"
-    app:cardCornerRadius="6dp">
+    android:layout_margin="20dp"
+    app:cardCornerRadius="20dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#26282B"
+        android:background="@color/colorPrimary"
         android:orientation="vertical">
 
 
@@ -45,38 +45,30 @@
 
         <TextView
             android:id="@+id/post_vremeikompanija"
-            android:layout_width="340dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/nullCardText"
             android:textAlignment="center"
-            android:textColor="#fff"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline"
             app:layout_constraintLeft_toLeftOf="@id/left_guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/expandableLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_vremeikompanija">
 
-            <TextView
-                android:id="@+id/post_relacija"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="@string/nullCardText"
-                android:textColor="#fff"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/post_relacija"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/nullCardText"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/post_vremeikompanija"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
 
             <TextView
                 android:id="@+id/post_stanica"
@@ -84,12 +76,12 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="@string/nullCardText"
-                android:textColor="#fff"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/post_relacija" />
+                app:layout_constraintTop_toBottomOf="@id/post_relacija"/>
 
             <TextView
                 android:id="@+id/post_cena"
@@ -97,19 +89,15 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="@string/nullCardText"
-                android:textColor="#fff"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/post_stanica" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.cardview.widget.CardView>
-
-

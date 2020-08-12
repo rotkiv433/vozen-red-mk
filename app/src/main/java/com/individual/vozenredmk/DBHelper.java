@@ -5,9 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement = "CREATE TABLE " + relations_table + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_RELATION_START + " TEXT, " +
+        String createTableStatement = "CREATE TABLE " + relations_table + " (" + COLUMN_ID + " INTEGER PRIMARY KEY, " + COLUMN_RELATION_START + " TEXT, " +
                 COLUMN_RELATION_END + " TEXT, " + COLUMN_RELATION_STATION + " TEXT, " + COLUMN_RELATION_TIME + " TEXT, " + COLUMN_RELATION_COMPANY + " TEXT," +
                 COLUMN_RELATION_PRICE + " TEXT)";
 
@@ -45,7 +43,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean addOne(Relation r) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-
+        System.out.println(r.getId());
+        cv.put(COLUMN_ID, r.getId());
         cv.put(COLUMN_RELATION_START, r.getStart());
         cv.put(COLUMN_RELATION_END, r.getEnd());
         cv.put(COLUMN_RELATION_STATION, r.getStanica());
@@ -60,6 +59,17 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public boolean deleteOne(Relation r) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + relations_table + " WHERE " + COLUMN_ID + " = " + r.getId();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        return cursor.moveToFirst();
+
+    }
+
     public List<Relation> getEveryone() {
         List<Relation> returnList = new ArrayList<>();
 
@@ -69,16 +79,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(queryString, null);
         if(cursor.moveToFirst()) {
             do {
-                int relationID = cursor.getInt(0);
-                String relationStart = cursor.getString(1);
-                String relationEnd = cursor.getString(2);
-                String relationStation = cursor.getString(3);
-                String relationTime = cursor.getString(4);
-                String relationCompany = cursor.getString(5);
-                String relationPrice = cursor.getString(6);
-
-                Relation newRelation =  new Relation(relationStart, relationEnd, relationStation, relationTime, relationCompany, relationPrice);
-                returnList.add(newRelation);
+                returnList.add(createNewRelation(cursor));
             } while(cursor.moveToNext());
         }
         else {
@@ -89,5 +90,27 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
 
         return returnList;
+    }
+
+    public Relation createNewRelation(Cursor cursor) {
+        int relationID = cursor.getInt(0);
+        String relationStart = cursor.getString(1);
+        String relationEnd = cursor.getString(2);
+        String relationStation = cursor.getString(3);
+        String relationTime = cursor.getString(4);
+        String relationCompany = cursor.getString(5);
+        String relationPrice = cursor.getString(6);
+        return new Relation(relationID, relationStart, relationEnd, relationStation, relationTime, relationCompany, relationPrice);
+    }
+
+    public Relation getSingleRow(int Id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + relations_table + " WHERE " + COLUMN_ID + " = " + Id;
+        Cursor cursor = db.rawQuery(queryString, null);
+        Relation foundRowRelation = new Relation();
+        if(cursor.moveToFirst()) {
+            foundRowRelation = createNewRelation(cursor);
+        }
+        return foundRowRelation;
     }
 }

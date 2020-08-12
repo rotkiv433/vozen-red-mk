@@ -1,7 +1,9 @@
 package com.individual.vozenredmk;
 
-public class Relation {
+import java.util.ArrayList;
 
+public class Relation {
+    private int Id;
     private String start;
     private String end;
     private String stanica;
@@ -10,7 +12,8 @@ public class Relation {
     private String cena;
     private Boolean expanded;
 
-    public Relation(String start, String end, String stanica, String vreme, String kompanija, String cena) {
+    public Relation(int Id, String start, String end, String stanica, String vreme, String kompanija, String cena) {
+        this.Id = Id;
         this.start = start;
         this.end = end;
         this.stanica = stanica;
@@ -97,5 +100,37 @@ public class Relation {
                 ", cena='" + cena + '\'' +
                 ", expanded=" + expanded +
                 '}';
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int Id) {
+        this.Id = Id;
+    }
+
+
+
+    public Relation createNewRelation(ArrayList<Relation> relacii, RelacijaViewHolder holder, int position) {
+        Relation temp = new Relation();
+        int Id = relacii.get(position).getId();
+        temp.setId(Id);
+        String relacija = (String) holder.relacija.getText();
+        String[] parts = relacija.split(" - ");
+        String start = parts[0];
+        String end = parts[1];
+        temp.setStart(start);
+        temp.setEnd(end);
+        String vremeikompanija = (String) holder.vremeikompanija.getText();
+        parts = vremeikompanija.split(" - ");
+        String vreme = parts[0];
+        String kompanija = parts[1];
+        temp.setVreme(vreme);
+        temp.setKompanija(kompanija);
+        temp.setStanica((String) holder.stanica.getText());
+        temp.setCena((String) holder.cena.getText());
+
+        return temp;
     }
 }

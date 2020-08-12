@@ -31,22 +31,13 @@ public class RelationAdapter extends RecyclerView.Adapter<RelacijaViewHolder> {
 
 
     @Override
-    public void onBindViewHolder(@NonNull final RelacijaViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RelacijaViewHolder holder, final int position) {
         final DBHelper dbHelper = new DBHelper(context);
         holder.relacija.setText(relacii.get(position).getRelacija());
         holder.vremeikompanija.setText(relacii.get(position).getVremeIKompanija());
         holder.cena.setText(relacii.get(position).getCena());
         holder.stanica.setText(relacii.get(position).getStanica());
-        holder.vremeikompanija.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(holder.expandableLayout.getVisibility() == View.GONE) {
-                    holder.expandableLayout.setVisibility(View.VISIBLE);
-                }
-                else
-                    holder.expandableLayout.setVisibility(View.GONE);
-            }
-        });
+
 
 
 
@@ -61,36 +52,15 @@ public class RelationAdapter extends RecyclerView.Adapter<RelacijaViewHolder> {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     Relation savedRealtion = new Relation();
-                    savedRealtion = createNewRelation();
+                    savedRealtion = savedRealtion.createNewRelation(relacii, holder, position);
                     holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.ic_baseline_favorite_24));
                     dbHelper.addOne(savedRealtion);
 
                 }
-
-
                 else
                     holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.ic_baseline_favorite_border_24));
             }
 
-            private Relation createNewRelation() {
-                Relation temp = new Relation();
-                String relacija = (String) holder.relacija.getText();
-                String[] parts = relacija.split(" - ");
-                String start = parts[0];
-                String end = parts[1];
-                temp.setStart(start);
-                temp.setEnd(end);
-                String vremeikompanija = (String) holder.vremeikompanija.getText();
-                parts = vremeikompanija.split(" - ");
-                String vreme = parts[0];
-                String kompanija = parts[1];
-                temp.setVreme(vreme);
-                temp.setKompanija(kompanija);
-                temp.setStanica((String) holder.stanica.getText());
-                temp.setCena((String) holder.cena.getText());
-
-                return temp;
-            }
         });
 
 

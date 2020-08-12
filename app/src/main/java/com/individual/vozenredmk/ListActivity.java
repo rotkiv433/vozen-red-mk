@@ -53,7 +53,6 @@ public class ListActivity extends AppCompatActivity {
                     assert r != null;
                     if(relationFrom.equals(r.getStart()) && relationTo.equals(r.getEnd())) {
                         relacii.add(r);
-                        System.out.println(relacii.toString());
                     }
                     else {
                         relacii.remove(r);
