@@ -8,14 +8,16 @@
     android:elevation="90dp"
     android:orientation="vertical"
     android:layout_margin="20dp"
-    app:cardCornerRadius="20dp">
+    app:cardCornerRadius="20dp"
+    android:id="@+id/cardViewMain">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/mainConstraint">
 
 
         <ToggleButton

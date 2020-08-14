@@ -50,15 +50,17 @@ public class RelationAdapter extends RecyclerView.Adapter<RelacijaViewHolder> {
         holder.toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Relation savedRealtion = new Relation();
+                savedRealtion = savedRealtion.createNewRelation(relacii, holder, position);
                 if(isChecked) {
-                    Relation savedRealtion = new Relation();
-                    savedRealtion = savedRealtion.createNewRelation(relacii, holder, position);
                     holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.ic_baseline_favorite_24));
                     dbHelper.addOne(savedRealtion);
 
                 }
-                else
+                else {
                     holder.toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.ic_baseline_favorite_border_24));
+                    dbHelper.deleteOne(savedRealtion);
+                }
             }
 
         });
