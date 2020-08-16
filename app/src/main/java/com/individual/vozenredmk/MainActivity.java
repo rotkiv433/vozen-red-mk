@@ -3,9 +3,14 @@ package com.individual.vozenredmk;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import android.app.ActionBar;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         bottomNav= findViewById(R.id.bottom_navigation);
@@ -45,9 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_favorites:
                     selectedFragment = new FavoritesFragment();
                     break;
-                case R.id.nav_allRelations:
-                    selectedFragment = new AllRelationsFragment();
-                    break;
+
             }
 
             assert selectedFragment != null;

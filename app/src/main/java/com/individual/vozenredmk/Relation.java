@@ -1,6 +1,7 @@
 package com.individual.vozenredmk;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Relation {
     private int Id;
@@ -133,4 +134,12 @@ public class Relation {
 
         return temp;
     }
+
+
+    public static Comparator<Relation> sortByTime = new Comparator<Relation>() {
+        @Override
+        public int compare(Relation r1, Relation r2) {
+            return r1.getVreme().compareTo(r2.getVreme());
+        }
+    };
 }

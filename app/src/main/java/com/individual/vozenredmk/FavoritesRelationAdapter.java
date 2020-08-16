@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.Toast;
@@ -28,6 +30,7 @@ public class FavoritesRelationAdapter extends RecyclerView.Adapter<RelacijaViewH
     ToggleButton heartButton;
     Fragment f;
     DBHelper dbHelper;
+    private int lastPosition = -1;
 
 
     public FavoritesRelationAdapter(Context contextFavorites, ArrayList<Relation> relationFavorites) {
@@ -86,10 +89,23 @@ public class FavoritesRelationAdapter extends RecyclerView.Adapter<RelacijaViewH
 
             }
         });
+
+        setAnimation(holder.itemView, position);
     }
 
     @Override
     public int getItemCount() {
         return relationFavorites.size();
+    }
+
+    public void setAnimation(View view, int position) {
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(contextFavorites, android.R.anim.slide_in_left);
+            animation.setDuration(300);
+            view.startAnimation(animation);
+
+            lastPosition = position;
+        }
     }
 }

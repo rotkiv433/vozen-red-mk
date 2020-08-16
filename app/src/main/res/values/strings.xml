@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">Возен Ред МК</string>
+    <string name="app_name">Возен Ред</string>
     <string name="nullCardText">null</string>
+    <string name="WelcomeText">ОДБЕРЕТЕ ПОЧЕТНА И КРАЈНА ДЕСТИНАЦИЈА</string>
 </resources>

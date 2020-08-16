@@ -4,18 +4,23 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class RelationAdapter extends RecyclerView.Adapter<RelacijaViewHolder> {
 
     Context context;
     ArrayList<Relation> relacii;
+    private int lastPosition = -1;
 
     public RelationAdapter(Context c, ArrayList<Relation> r) {
         context = c;
@@ -27,11 +32,13 @@ public class RelationAdapter extends RecyclerView.Adapter<RelacijaViewHolder> {
     public RelacijaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         return new RelacijaViewHolder(LayoutInflater.from(context).inflate(R.layout.relacii_cardview, parent, false));
+
     }
 
 
     @Override
     public void onBindViewHolder(@NonNull final RelacijaViewHolder holder, final int position) {
+
         final DBHelper dbHelper = new DBHelper(context);
         holder.relacija.setText(relacii.get(position).getRelacija());
         holder.vremeikompanija.setText(relacii.get(position).getVremeIKompanija());
@@ -64,8 +71,23 @@ public class RelationAdapter extends RecyclerView.Adapter<RelacijaViewHolder> {
             }
 
         });
+        setAnimation(holder.itemView, position);
 
 
+
+
+
+    }
+
+    private void setAnimation(View itemView, int position) {
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            animation.setDuration(300);
+            itemView.startAnimation(animation);
+
+            lastPosition = position;
+        }
     }
 
 
@@ -79,6 +101,8 @@ public class RelationAdapter extends RecyclerView.Adapter<RelacijaViewHolder> {
         relacii.clear();
         notifyItemRangeRemoved(0, size);
     }
+
+
 
 
 }
