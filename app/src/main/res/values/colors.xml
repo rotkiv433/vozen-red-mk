@@ -10,5 +10,6 @@
     <color name="sky">#ff42959a</color>
     <color name="darkSky">#ff23729a</color>
     <color name="topPurple">#4C03AB</color>
+    <color name="toolbar">#4C0380</color>
 
 </resources>

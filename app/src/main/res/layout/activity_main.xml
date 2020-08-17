@@ -8,6 +8,33 @@
     android:background="@drawable/gradient_background_favorites">
 
 
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:minHeight="?attr/actionBarSize"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:titleTextColor="@color/white"-->
+<!--        android:fitsSystemWindows="true"-->
+<!--        android:background="@drawable/gradient_toolbar"-->
+<!--        android:textAlignment="center">-->
+<!--&lt;!&ndash;        &ndash;&gt;-->
+
+
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="ВОЗЕН РЕД"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:textSize="20sp"-->
+<!--            android:fontFamily="@font/montserrat_bold"-->
+
+<!--            />-->
+<!--    </androidx.appcompat.widget.Toolbar>-->
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -21,7 +48,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#00700D66"
         app:elevation="0dp"

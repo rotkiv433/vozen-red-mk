@@ -6,6 +6,29 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background_favorites">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/white"
+        android:fitsSystemWindows="true"
+        android:background="@drawable/gradient_toolbar"
+        >
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ВОЗЕН РЕД"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        />
+    </androidx.appcompat.widget.Toolbar>
 
     <Button
         android:id="@+id/btnBaraj"
@@ -26,7 +49,7 @@
         android:id="@+id/relationFrom"
         android:layout_width="150dp"
         android:layout_height="35dp"
-        android:layout_marginTop="228dp"
+        android:layout_marginTop="300dp"
         android:layout_marginEnd="85dp"
         android:background="@drawable/button_bg"
 
@@ -66,7 +89,7 @@
         android:id="@+id/textView"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="160dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/WelcomeText"
         android:textAlignment="center"
@@ -81,7 +104,7 @@
         android:id="@+id/textView2"
         android:layout_width="97dp"
         android:layout_height="20dp"
-        android:layout_marginTop="236dp"
+        android:layout_marginTop="308dp"
         android:layout_marginEnd="25dp"
         android:fontFamily="@font/montserrat_light"
         android:text="ОД:"

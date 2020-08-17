@@ -1,6 +1,7 @@
 package com.individual.vozenredmk;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.solver.state.State;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,7 +20,6 @@ import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.google.android.gms.common.util.ArrayUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,12 +29,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
 
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 
 public class ListActivity extends AppCompatActivity {
@@ -49,8 +47,7 @@ public class ListActivity extends AppCompatActivity {
     ConstraintLayout mainConstraint;
     Switch allRelations;
     FrameLayout fragmentContainer;
-
-
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +59,10 @@ public class ListActivity extends AppCompatActivity {
         loading = findViewById(R.id.loading);
         allRelations = findViewById(R.id.switchAllRelations);
         fragmentContainer = findViewById(R.id.fragment_container);
-
-//        mainConstraint = view.findViewById(R.id.mainConstraint);
-//        mainConstraint.setBackgroundResource(R.color.purple);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         recyclerViewList = (RecyclerView)findViewById(R.id.myRecycleView);
         recyclerViewList.setHasFixedSize(true);
         recyclerViewList.setLayoutManager(new LinearLayoutManager(this));

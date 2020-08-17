@@ -9,6 +9,8 @@ import android.transition.Fade;
 import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -34,7 +37,7 @@ public class SearchRelationsFragment extends Fragment {
     ArrayAdapter<String> adapter;
     SpinnerDialog spinnerDialog, spinnerDialog2;
     private int pozicija = -1;
-
+    Toolbar toolbar;
 
     private List<String> loadList() {
         List<String> gradovi = new ArrayList<>();
