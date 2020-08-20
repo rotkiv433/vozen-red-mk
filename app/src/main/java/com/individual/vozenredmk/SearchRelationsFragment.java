@@ -1,23 +1,16 @@
 package com.individual.vozenredmk;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.transition.Fade;
 import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -55,7 +48,7 @@ public class SearchRelationsFragment extends Fragment {
         gradovi.add("Кавадарци");
         gradovi.add("Кочани");
 
-        gradovi.add("test");
+        gradovi.add("Test");
 
         return gradovi;
     }
@@ -69,14 +62,14 @@ public class SearchRelationsFragment extends Fragment {
         gradovi = loadList();
         spinnerDialog = new SpinnerDialog(getActivity(), (ArrayList<String>) gradovi, "Од град:",R.style.DialogAnimations_SmileWindow, "Затвори");
         spinnerDialog.setCancellable(true);
-        spinnerDialog.setShowKeyboard(true);
-//        spinnerDialog2.setSearchIconColor(getResources().getColor(R.color.purple));
-//        spinnerDialog2 = new SpinnerDialog(getActivity(),(ArrayList<String>) gradovi, "До град:", R.style.DialogAnimations_SmileWindow, "Затвори");
-//        spinnerDialog2.setCancellable(true);
-//        spinnerDialog2.setShowKeyboard(false);
-        //ADAPTER FOR FIRST SPINNER
-//        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gradovi);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDialog.setShowKeyboard(false);
+//                spinnerDialog2.setSearchIconColor(getResources().getColor(R.color.purple));
+//                spinnerDialog2 = new SpinnerDialog(getActivity(),(ArrayList<String>) gradovi, "До град:", R.style.DialogAnimations_SmileWindow, "Затвори");
+//                spinnerDialog2.setCancellable(true);
+//                spinnerDialog2.setShowKeyboard(false);
+//                ADAPTER FOR FIRST SPINNER
+//                adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, gradovi);
+//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         btnBaraj = (Button)view.findViewById(R.id.btnBaraj);
         relationFrom = (Button)view.findViewById(R.id.relationFrom);
@@ -107,7 +100,7 @@ public class SearchRelationsFragment extends Fragment {
                 gradovi2.remove(position);
                 spinnerDialog2 = new SpinnerDialog(getActivity(),(ArrayList<String>) gradovi2, "До град:", R.style.DialogAnimations_SmileWindow, "Затвори");
                 spinnerDialog2.setCancellable(true);
-                spinnerDialog2.setShowKeyboard(true);
+                spinnerDialog2.setShowKeyboard(false);
                 spinnerDialog2.bindOnSpinerListener(new OnSpinerItemClick() {
                     @Override
                     public void onClick(String item, int position) {

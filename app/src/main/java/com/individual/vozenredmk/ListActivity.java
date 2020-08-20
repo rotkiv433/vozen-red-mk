@@ -17,7 +17,9 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,6 +50,7 @@ public class ListActivity extends AppCompatActivity {
     Switch allRelations;
     FrameLayout fragmentContainer;
     Toolbar toolbar;
+    TextView noRelationsFound;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,7 @@ public class ListActivity extends AppCompatActivity {
         allRelations = findViewById(R.id.switchAllRelations);
         fragmentContainer = findViewById(R.id.fragment_container);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        noRelationsFound = findViewById(R.id.noRelationsText);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -99,10 +103,13 @@ public class ListActivity extends AppCompatActivity {
 
 
                 }
-
+                Collections.sort(relaciiOutOfTime, Relation.sortByTime);
                 if(relacii.size() == 0) {
-                    Toast.makeText(ListActivity.this, "Нема автобуски линии за оваа релација!", Toast.LENGTH_SHORT).show();
+                    noRelationsFound.setVisibility(View.VISIBLE);
+                    noRelationsFound.setText("За жал, последната релација од " + relationFrom + " до " + relationTo + " замина во " + relaciiOutOfTime.get(relaciiOutOfTime.size()-1).getVreme());
                 }
+                else
+                    noRelationsFound.setVisibility(View.GONE);
 
                 Collections.sort(relacii, Relation.sortByTime);
                 System.out.println(relacii);
@@ -115,6 +122,7 @@ public class ListActivity extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if(isChecked) {
+                            noRelationsFound.setVisibility(View.GONE);
                             allRelations.setText("Сите релации ("+relationFrom+" - "+relationTo+")");
                             ArrayList<Relation> result = new ArrayList<>();
                             result.addAll(relacii);
@@ -126,6 +134,8 @@ public class ListActivity extends AppCompatActivity {
                             recyclerViewList.setAdapter(adapter);
                         }
                         else {
+                            if(relacii.size() == 0)
+                                noRelationsFound.setVisibility(View.VISIBLE);
                             allRelations.setText("Во живо релации ("+relationFrom+" - "+relationTo+")");
                             adapter = new RelationAdapter(ListActivity.this, relacii);
                             recyclerViewList.setAdapter(adapter);
